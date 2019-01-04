@@ -1,0 +1,16 @@
+{
+    "esversion": 6,
+    "browser": true,
+    "asi": true,
+    "eqnull": true,
+    "evil": true,
+    "eqeqeq": true,
+    "funcscope": false,
+    "latedef": false,
+    "undef": true,
+    "unused": true,
+    "loopfunc": true,
+    "shadow": true,
+    "expr": true,
+    "node": true
+}
