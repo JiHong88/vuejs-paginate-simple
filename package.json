@@ -1,0 +1,26 @@
+{
+  "name": "vuejs-pagination-component",
+  "version": "0.0.1",
+  "description": "A Vue.js component for creating pagination.",
+  "main": "index.js",
+  "dependencies": {
+    "cloudant": "^1.10.0-NOTICE"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-me:JiHong88/vuejs-pagination-component.git"
+  },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "component",
+    "pagination",
+    "page"
+  ],
+  "author": "JiHong.Lee",
+  "license": "MIT"
+}
