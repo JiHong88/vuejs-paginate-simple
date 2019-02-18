@@ -1,15 +1,15 @@
 <template>
-    <div class="component">
+    <div class="vuejs-pagination-component">
         <ul class="pagination">
-            <li class="page-item" :class="{'disabled': currentPageNum === 1}"><a tabindex="-1" @click="pickPage(1)" class="page-link"><span>«</span></a></li>
-            <li class="page-item" :class="{'disabled': currentPageNum === 1}"><a tabindex="-1" @click="movePage(-1)" class="page-link"><span>‹</span></a></li>
+            <li class="page-item" :class="{'disabled': currentPage === 1}"><a tabindex="-1" @click="pickPage(1)" class="page-link"><span>«</span></a></li>
+            <li class="page-item" :class="{'disabled': currentPage === 1}"><a tabindex="-1" @click="movePage(-1)" class="page-link"><span>‹</span></a></li>
 
-            <li v-for="(page, index) in pages" :key="index" class="page-item" :class="{'active': currentPageNum === page}">
+            <li v-for="(page, index) in pages" :key="index" class="page-item" :class="{'active': currentPage === page}">
                 <a @click="pickPage(page)" tabindex="-1" class="page-link">{{ page }}</a>
             </li>
 
-            <li class="page-item" :class="{'disabled': currentPageNum >= totalPages}"><a @click="movePage(1)" tabindex="-1" class="page-link"><span>›</span></a></li>
-            <li class="page-item" :class="{'disabled': currentPageNum >= totalPages}"><a @click="pickPage(totalPages)" tabindex="-1" class="page-link"><span>»</span></a></li>
+            <li class="page-item" :class="{'disabled': currentPage >= totalPages}"><a @click="movePage(1)" tabindex="-1" class="page-link"><span>›</span></a></li>
+            <li class="page-item" :class="{'disabled': currentPage >= totalPages}"><a @click="pickPage(totalPages)" tabindex="-1" class="page-link"><span>»</span></a></li>
         </ul>
     </div>
 </template>
@@ -26,26 +26,26 @@ export default {
             default: 10,
             type: Number
         },
-        current: {
-            default: 1,
-            type: Number
-        },
-        action: Function
+        value: {
+			type: Number,
+			default: 1
+		}
     },
     data() {
         return {
-            padding: Math.floor(this.pageCount / 2),
-            totalPages: Math.ceil(this.totalResult / this.rowsPerPage),
-            currentPageNum: this.current
+            currentPage: this.value
         }
     },
     computed: {
-        currentPages() {
-            return Math.ceil(this.currentPageNum / this.pageCount)
+        totalPages() {
+            return Math.ceil(this.totalResult / this.rowsPerPage)
+        },
+        padding() {
+            return Math.floor(this.pageCount / 2)
         },
         pages() {
             const pages = []
-            const index = this.currentPageNum - this.padding;
+            const index = this.currentPage - this.padding;
             const start = index < 1 ? 1 : index + this.pageCount > this.totalPages ? this.totalPages - this.pageCount + 1 : index
             const end = start + (this.pageCount > this.totalPages ? this.totalPages || 1 : this.pageCount)
             
@@ -57,22 +57,21 @@ export default {
         },
     },
     watch: {
-        totalResult() {
-            this.totalPages = Math.ceil(this.totalResult / this.rowsPerPage)
-        },
-        currentPageNum() {
-            if (this.currentPageNum < 1) this.currentPageNum = 1
-            else if (this.currentPageNum > this.totalPages) this.currentPageNum = this.totalPages
-
-            if (typeof this.action === 'function') this.action(this.currentPageNum)
+        value(val) {
+			this.currentPage = val
+		},
+        currentPage() {
+            if (this.currentPage < 1) this.currentPage = 1
+            else if (this.currentPage > this.totalPages) this.currentPage = this.totalPages
+            this.$emit('input', this.currentPage)
         }
     },
     methods: {
         pickPage(pageNum) {
-            this.currentPageNum = pageNum
+            this.currentPage = pageNum
         },
         movePage(moveNum) {
-            this.currentPageNum = ((Math.ceil(this.currentPageNum / this.pageCount) + moveNum) * this.pageCount) - this.pageCount + 1
+            this.currentPage = ((Math.ceil(this.currentPage / this.pageCount) + moveNum) * this.pageCount) - this.pageCount + 1
         }
     }
 }
