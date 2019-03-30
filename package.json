@@ -1,23 +1,40 @@
 {
-  "name": "vuejs-pagination-component",
+  "name": "vuejs-paginate-simple",
   "version": "0.0.1",
   "description": "A Vue.js component for creating pagination.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "demo": "webpack-dev-server --config ./webpack.demo.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com-me:JiHong88/vuejs-pagination-component.git"
+    "url": "git@github.com-me:JiHong88/vuejs-paginate-simple.git"
   },
   "keywords": [
     "vue",
-    "vuejs",
-    "component",
+    "vue.js",
     "pagination",
-    "page"
+    "paginate",
+    "page",
+    "component"
   ],
   "author": "JiHong.Lee",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "css-loader": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "jshint": "^2.10.2",
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  }
 }

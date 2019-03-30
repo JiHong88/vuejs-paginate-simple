@@ -1,5 +1,5 @@
 <template>
-    <div class="vuejs-pagination-component">
+    <div class="vuejs-paginate-simple">
         <ul class="pagination">
             <li class="page-item navi" :class="{'disabled': currentPage === 1}"><a tabindex="-1" @click="pickPage(1)" class="page-link"><span>«</span></a></li>
             <li class="page-item navi" :class="{'disabled': currentPage === 1}"><a tabindex="-1" @click="movePage(-1)" class="page-link"><span>‹</span></a></li>
