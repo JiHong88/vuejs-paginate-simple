@@ -14,8 +14,13 @@
 </template>
 
 <script>
+import Paginate from '../src/components/Paginate';
+
 export default {
     name: 'App',
+    components: {
+        Paginate
+    },
     data() {
         return {
             page: 1
